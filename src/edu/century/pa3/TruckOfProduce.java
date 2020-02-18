@@ -1,32 +1,27 @@
 package edu.century.pa3;
 
 public class TruckOfProduce {
-	private int truckID;
-	private Produce[] truck = new Produce[3];
+	private Produce[] truck;
 	
-	public void setID(int id) {
-		truckID = id;
-	}
-	
-	public int getID() {
-		return truckID;
-	}
-	
-	public TruckOfProduce(int id) {
-		truckID = id;
+	public TruckOfProduce(int truckSize) {
+		truck = new Produce[truckSize];
 	}
 	
 	public void addProduce(Produce ref) {
-		for (int i = 0; i < truck.length; i++)
-			if(truck[i] == null)
+		for (int i = 0; i < truck.length; i++) {
+			if (truck[i] == null) {
 				truck[i] = ref;
+				return;
+			}
+		}
 	}
 	
 	public boolean search(String n) {
 		boolean flag = false;
 		for (int i = 0; i < truck.length; i++) {
-			if(truck[i].getName().equals(n))
-				flag = true;	
+			if(truck[i].getName().equals(n)) {
+				flag = true;
+			}
 		}
 		return flag;
 	}
@@ -35,9 +30,9 @@ public class TruckOfProduce {
 		if (search(ref.getName())) {
 			Produce.delete(ref);
 			return true;
-		}
-		else
+		} else {
 			return false;
+		}
 	}
 	
 	public double computeTotal(TruckOfProduce t) {
@@ -50,9 +45,10 @@ public class TruckOfProduce {
 	
 	@Override
 	public String toString() {
-		String str = null;
-		for (int i = 0; i < truck.length; i++)
-			str = str + truck[i].getName();
+		String str = "";
+		for (int i = 0; i < truck.length; i++) {
+			str += truck[i].getName();
+		}
 		return str;
 	}
 	
@@ -62,8 +58,9 @@ public class TruckOfProduce {
 			if (truck[i] == null) {
 				return;
 			} else {
-				for (int j = 1; j <= truck.length; j++)
+				for (int j = 1; j <= truck.length; j++) {
 					newTruck[j] = truck[j];
+				}
 				truck = newTruck;
 			}
 		}
