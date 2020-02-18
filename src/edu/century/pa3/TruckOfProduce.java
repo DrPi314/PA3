@@ -26,7 +26,7 @@ public class TruckOfProduce {
 	public boolean search(String n) {
 		boolean flag = false;
 		for (int i = 0; i < truck.length; i++) {
-			if(truck[i].getName().equals(n)) {
+			if(truck[i] != null && truck[i].getName().equals(n)) {
 				flag = true;
 			}
 		}
@@ -44,7 +44,10 @@ public class TruckOfProduce {
 	
 	public double computeTotal(TruckOfProduce t) {
 		double total = 0.0;
-		for(int i = 0; i < truck.length; i++) {
+		for (int i = 0; i < truck.length; i++) {
+			if (truck[i] == null) {
+				return total;
+			}
 			total += truck[i].getPrice() * truck[i].getQuantity();
 		}
 		return total;
@@ -54,7 +57,9 @@ public class TruckOfProduce {
 	public String toString() {
 		String str = "";
 		for (int i = 0; i < truck.length; i++) {
-			str += truck[i].getName();
+			if (truck[i] != null ) {
+				str += truck[i].getName();
+			}
 		}
 		return str;
 	}
