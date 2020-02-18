@@ -14,6 +14,13 @@ public class TruckOfProduce {
 				return;
 			}
 		}
+
+		Produce[] newTruck = new Produce[truck.length * 2];
+		for (int i = 0; i < truck.length; i++) {
+			newTruck[i] = truck[i];
+		}
+		newTruck[truck.length] = ref;
+		truck = newTruck;
 	}
 	
 	public boolean search(String n) {
